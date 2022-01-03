@@ -3,28 +3,28 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <div class="mypage">
-
+AN EMPTY DIV TO FETCH YOUR DESIRED WEBSITE SO THAT YOU CAN USE JQUERY SELECTORS TO PROCEED
 </div>
 
 <script>
-    $.get("http://localelection.ekantipur.com/", function(webpage_html) {
+    $.get("http://desiredwebsite.com/", function(webpage_html) {
 
         $('.mypage').append(webpage_html);
 
-        var load_tag = $('g path ');
+        var load_tag = $('tag/class/id/orAnyThing');
 
 
-        var districts = [];
+        var imageID = [];
 
         load_tag.each(function(e) {
-            if ($(this).attr('id') !== undefined) {
-                districts.push($(this).attr('id'));
+            if ($(this).attr('id/name/orAnyThing') !== undefined) {
+                imageID.push($(this).attr('id'));
             }
         });
         $.ajax({
             type: "POST",
             data: {
-                'districtList': districts
+                'imageID': imageID
             },
             success: function() {
             
@@ -36,11 +36,11 @@
 <?php
     
 $success_count = $failed_count = 0;
-    if(isset($_POST['districtList'])){
+    if(isset($_POST['imageID'])){
 
-        foreach($_POST['districtList'] as $district){
-            $map = 'https://assets-cdn.ekantipur.com/images/election/og-image/'.$district.'.jpg';
-            $filename = 'maps/'.$district.'.jpg';
+        foreach($_POST['imageID'] as image){
+            $map = 'https://desiredwebsite/image/'.image.'.jpg';
+            $filename = 'yourFolder/'.image.'.jpg';
             if (file_put_contents($filename , file_get_contents($map))){
                 $success_count++;
             }else{
